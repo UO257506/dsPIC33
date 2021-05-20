@@ -70,8 +70,8 @@ void Interrupt1(void)
       if(pulso1 == 6){
             pulso1=0;
         }
-      Efecto1(pulso1); //Para visualizar el efecto 1
-      //Efecto2(pulso1);// Para visualizar el efecto2
+      //Efecto1(pulso1); //Para visualizar el efecto 1
+      Efecto2(pulso1);// Para visualizar el efecto2
  
 }
 
@@ -81,12 +81,12 @@ void Int1Switch(void){
     if(PORTEbits.RE7 == 0)
     {   
         //IFS0bits.T1IF = 0;
-        pulso2++;
-        if (pulso2 == 6){
-            pulso2 = 0;  //RESET de efectos
+        pulso1++;
+        if (pulso1 == 6){
+            pulso1 = 0;  //RESET de efectos
         }
-       //Efecto1(pulso1); //Para visualizar el efecto 1
-        Efecto2(pulso2);// Para visualizar el efecto2
+        Efecto1(pulso1); //Para visualizar el efecto 1
+        //Efecto2(pulso2);// Para visualizar el efecto2
     }//Cierro SW1
   
    if(PORTEbits.RE8 == 0)
@@ -108,8 +108,8 @@ int main(void)
     CLOCK_Initialize();
     INTERRUPT_Initialize();
     TMR1_Initialize ();
-    TMR1_SetInterruptHandler(Interrupt1);
-    //TMR1_SetInterruptHandler(Int1Switch);
+    //TMR1_SetInterruptHandler(Interrupt1);
+    TMR1_SetInterruptHandler(Int1Switch);
     
     while (1)
     {
